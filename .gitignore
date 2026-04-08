@@ -1,0 +1,38 @@
+# Model weights and checkpoints
+checkpoints/
+results/
+*.safetensors
+*.gguf
+*.bin
+
+# W&B local logs
+wandb/
+
+# Training logs
+logs/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.venv/
+
+# Personal learning guides — local only
+EXPERIMENT_GUIDE.md
+PROJECT_GUIDE.md
+RESEARCH_LOG.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp

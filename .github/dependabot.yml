@@ -1,0 +1,15 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      ml-deps:
+        patterns: ["torch*", "transformers", "trl", "peft", "accelerate", "datasets"]
+      dev-deps:
+        patterns: ["ruff", "pytest*", "pre-commit"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

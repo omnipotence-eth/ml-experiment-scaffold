@@ -1,0 +1,10 @@
+_base: base.yaml
+
+training:
+  method: "sft"
+  num_train_epochs: 3
+  learning_rate: 2.0e-4
+  warmup_steps: 100
+
+data:
+  format: "messages"

@@ -1,0 +1,28 @@
+_base: base.yaml
+
+training:
+  method: "grpo"
+  loss_type: "dapo"           # DAPO: no KL penalty, more stable on small models
+  beta: 0.0                   # DAPO removes KL penalty entirely
+  num_train_epochs: 1
+  max_steps: 500
+  per_device_train_batch_size: 4
+  gradient_accumulation_steps: 4
+  learning_rate: 5.0e-6
+  warmup_steps: 10
+  num_generations: 4
+  max_completion_length: 512
+  save_steps: 100
+  logging_steps: 1
+
+rewards:
+  - name: "correctness"
+    weight: 1.0
+  - name: "format"
+    weight: 0.5
+
+data:
+  format: "prompt_answer"
+  dataset_name: "openai/gsm8k"
+  dataset_config: "main"
+  dataset_split: "train"

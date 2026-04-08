@@ -1,0 +1,21 @@
+_base: base.yaml
+
+model:
+  name: null
+  type: "tabular"
+  module: "my_model.Net"      # user defines nn.Module class
+  kwargs: {}
+
+lora:
+  enabled: false
+
+training:
+  method: "tabular"
+  per_device_train_batch_size: 64
+  gradient_accumulation_steps: 1
+  learning_rate: 1.0e-3
+  num_train_epochs: 20
+  logging_steps: 50
+
+data:
+  format: "csv"

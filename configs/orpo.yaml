@@ -1,0 +1,17 @@
+_base: base.yaml
+
+training:
+  method: "orpo"
+  num_train_epochs: 1
+  max_steps: -1
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 4
+  learning_rate: 5.0e-6
+  warmup_steps: 5
+  beta: 0.1
+  save_steps: 50
+  eval_steps: 50
+  logging_steps: 10
+
+data:
+  format: "preference"

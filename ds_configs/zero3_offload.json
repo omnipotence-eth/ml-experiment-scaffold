@@ -1,0 +1,24 @@
+{
+  "zero_optimization": {
+    "stage": 3,
+    "offload_optimizer": {
+      "device": "cpu",
+      "pin_memory": true
+    },
+    "offload_param": {
+      "device": "cpu",
+      "pin_memory": true
+    },
+    "stage3_max_live_parameters": 1000000000,
+    "stage3_prefetch_bucket_size": 10000000,
+    "reduce_bucket_size": 10000000,
+    "overlap_comm": true,
+    "contiguous_gradients": true
+  },
+  "bf16": {
+    "enabled": true
+  },
+  "train_micro_batch_size_per_gpu": 1,
+  "gradient_accumulation_steps": 16,
+  "gradient_clipping": 1.0
+}

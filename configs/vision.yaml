@@ -1,0 +1,22 @@
+_base: base.yaml
+
+model:
+  name: "resnet50"
+  type: "vision"
+  pretrained: true
+  num_classes: 100
+
+lora:
+  enabled: false
+
+training:
+  method: "vision"
+  per_device_train_batch_size: 32
+  gradient_accumulation_steps: 1
+  learning_rate: 1.0e-3
+  num_train_epochs: 10
+  logging_steps: 50
+  save_steps: 500
+
+data:
+  format: "image_folder"

@@ -1,0 +1,22 @@
+# ML Experiment — Pinned Environment
+# Update exact versions after initial setup: conda run -n mlenv pip freeze | grep <package>
+# NEVER commit a full `conda env export` — key packages only.
+
+name: mlenv
+channels: [pytorch, nvidia, conda-forge]
+dependencies:
+  - python=3.13
+  - pip:
+    - torch==2.10.0+cu128       # always include build suffix
+    - transformers==5.2.0
+    - trl==0.29.1
+    - peft==0.18.1
+    - accelerate==1.13.0
+    - bitsandbytes==0.44.0
+    - datasets==4.8.4
+    - wandb==0.25.1
+    - lm_eval==0.4.11
+    - unsloth>=2024.1
+    - PyYAML==6.0.2
+    - numpy==2.2.4
+# Freeze date: 2026-04-08 | Hardware: RTX 5070 Ti, CUDA 12.8, Blackwell sm_120

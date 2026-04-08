@@ -1,0 +1,80 @@
+# =============================================================================
+# base.yaml — shared defaults for all experiment types
+# Task-specific configs inherit via:  _base: base.yaml
+# =============================================================================
+
+seed: 42
+bf16: true                    # REQUIRED for Blackwell. Never fp16.
+max_seq_length: 2048          # 4096 OOMs on 16GB with bf16 LoRA
+output_dir: "checkpoints"
+
+# ── Model ───────────────────────────────────────────────────────────────────
+model:
+  name: "Qwen/Qwen2.5-3B-Instruct"
+  type: "llm"                 # "llm" | "vision" | "tabular"
+  load_in_4bit: false
+  load_in_fp8: false          # Unsloth fp8 via TorchAO — 60% less VRAM
+  trust_remote_code: false
+  attn_implementation: null   # null = auto-detect (flash_attention_2 > sdpa > eager)
+
+# ── LoRA ────────────────────────────────────────────────────────────────────
+lora:
+  enabled: true
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+# ── Training ────────────────────────────────────────────────────────────────
+training:
+  method: "sft"               # "sft" | "orpo" | "grpo" | "vision" | "tabular"
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 2.0e-4
+  warmup_steps: 100
+  num_train_epochs: 3
+  max_steps: -1               # -1 = use num_train_epochs
+  save_steps: 200
+  eval_strategy: "steps"
+  eval_steps: 200
+  eval_split: 0.1
+  logging_steps: 10
+
+  # Tier 1 optimizations (free speed)
+  optim: "adamw_torch_fused"
+  gradient_checkpointing: true
+  gradient_checkpointing_kwargs:
+    use_reentrant: false
+  dataloader_num_workers: 4   # tune to cpu_count // 2
+  dataloader_pin_memory: true
+  dataloader_persistent_workers: true
+  dataloader_prefetch_factor: 4
+  full_determinism: true      # reproducible; 5-15% slower. Set false for final training.
+
+# ── torch.compile (Tier 3 — opt-in) ────────────────────────────────────────
+compile: false                # true for runs > 2000 steps
+compile_mode: "reduce-overhead"  # "reduce-overhead" | "max-autotune-no-cudagraphs"
+
+# ── DeepSpeed (Tier 4 — opt-in) ────────────────────────────────────────────
+deepspeed_config: null        # "ds_configs/zero2_offload.json" when QLoRA alone doesn't fit
+
+# ── W&B ─────────────────────────────────────────────────────────────────────
+wandb:
+  project: null               # set via WANDB_PROJECT env var if null
+  tags: []
+
+# ── Data ────────────────────────────────────────────────────────────────────
+data:
+  train_file: null            # path to local training data
+  eval_file: null             # optional separate eval set
+  dataset_name: null          # HuggingFace dataset name (alternative to train_file)
+  dataset_config: null        # HF dataset config name
+  dataset_split: "train"
+  format: "messages"          # "messages" | "text" | "preference" | "prompt_answer" | "image_folder" | "csv"
