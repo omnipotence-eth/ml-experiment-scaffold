@@ -32,6 +32,6 @@ def log_peak_vram(
             wandb.log({"peak_vram_gb": round(peak_gb, 2)})
             wandb.run.summary["peak_vram_gb"] = round(peak_gb, 2)
         except Exception:
-            pass
+            log.debug("failed to log VRAM to wandb", exc_info=True)
 
     return peak_gb

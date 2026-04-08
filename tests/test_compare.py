@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 
+import pytest
+
 from scripts.compare import compare, load_results
 
 
@@ -69,6 +71,3 @@ def test_compare_negative_delta(tmp_path):
 def test_compare_no_results(tmp_path):
     table = compare(str(tmp_path / "a"), str(tmp_path / "b"))
     assert "No results found" in table
-
-
-import pytest  # noqa: E402

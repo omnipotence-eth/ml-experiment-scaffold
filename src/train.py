@@ -9,6 +9,8 @@ import random
 import sys
 from typing import Any
 
+import wandb
+
 logger = logging.getLogger(__name__)
 
 
@@ -69,8 +71,6 @@ def main() -> None:
         logger.info("DRY RUN: 10 steps, W&B disabled")
 
     # Init W&B
-    import wandb
-
     wandb_cfg = config.get("wandb", {})
     project = wandb_cfg.get("project") or os.getenv("WANDB_PROJECT", "ml-experiment")
     run_name = args.run_name or config.get("model", {}).get("name", "model").split("/")[-1]
@@ -293,8 +293,6 @@ def _train_vision(
 
             if global_step % logging_steps == 0:
                 logger.info("step=%d epoch=%d loss=%.4f", global_step, epoch, loss.item())
-                import wandb
-
                 wandb.log({"loss": loss.item(), "epoch": epoch}, step=global_step)
 
             if 0 < max_steps <= global_step:

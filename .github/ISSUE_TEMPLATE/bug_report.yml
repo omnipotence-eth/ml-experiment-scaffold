@@ -1,0 +1,39 @@
+name: Bug Report
+description: Report a bug in the scaffold
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal steps to reproduce the issue
+      value: |
+        1. Config used: `configs/...yaml`
+        2. Command: `make ...`
+        3. Error output:
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: GPU, CUDA version, Python version, OS
+      value: |
+        - GPU:
+        - CUDA:
+        - Python:
+        - OS:
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened?
