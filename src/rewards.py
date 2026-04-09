@@ -7,9 +7,13 @@ import re
 from collections.abc import Callable
 from typing import Any
 
+from src.registry import Registry
+
 logger = logging.getLogger(__name__)
 
 RewardFn = Callable[[list[str], list[str]], list[float]]
+
+reward_registry = Registry("reward")
 
 
 def build_reward_functions(reward_configs: list[dict[str, Any]]) -> list[RewardFn]:
@@ -17,17 +21,16 @@ def build_reward_functions(reward_configs: list[dict[str, Any]]) -> list[RewardF
 
     Each entry: ``{"name": "correctness", "weight": 1.0}``
     """
-    registry: dict[str, RewardFn] = {
-        "correctness": correctness_reward,
-        "format": format_reward,
-    }
     fns: list[RewardFn] = []
     for rc in reward_configs:
         name = rc["name"]
         weight = rc.get("weight", 1.0)
-        if name not in registry:
-            raise ValueError(f"Unknown reward function: {name}. Available: {list(registry.keys())}")
-        base_fn = registry[name]
+        try:
+            base_fn = reward_registry.get(name)
+        except KeyError:
+            raise ValueError(
+                f"Unknown reward function: {name}. Available: {reward_registry.list()}"
+            ) from None
         if weight != 1.0:
             fns.append(_weighted(base_fn, weight))
         else:
@@ -45,6 +48,7 @@ def _weighted(fn: RewardFn, weight: float) -> RewardFn:
     return wrapped
 
 
+@reward_registry.register("correctness")
 def correctness_reward(completions: list[str], answers: list[str]) -> list[float]:
     """Check if the model's numeric answer matches the expected answer."""
     rewards: list[float] = []
@@ -58,6 +62,7 @@ def correctness_reward(completions: list[str], answers: list[str]) -> list[float
     return rewards
 
 
+@reward_registry.register("format")
 def format_reward(completions: list[str], answers: list[str]) -> list[float]:
     """Reward for structured output format (thinking tags + boxed answer)."""
     rewards: list[float] = []

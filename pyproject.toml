@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ml-experiment-scaffold"
-version = "0.2.0"
+version = "0.3.0"
 description = "Production ML experiment scaffold for single-GPU homelab (RTX 5070 Ti, Blackwell)"
 readme = "README.md"
 license = {text = "MIT"}

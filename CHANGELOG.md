@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-04-08
+
+### Added
+- Generic `Registry` class (`src/registry.py`) with decorator-based registration, key lookup, overwrite warnings, and introspection
+- `reward_registry` instance — reward functions now register via `@reward_registry.register("name")`
+- 10 new registry tests (`tests/test_registry.py`) including integration test with reward registry
+- Back-filled `model_card.md` with bible-ai-assistant SFT+ORPO training data and evaluation results
+
+### Changed
+- Refactored `src/rewards.py` to use `Registry` instead of inline dict — extensible without modifying the build function
+
 ## [0.2.0] — 2026-04-08
 
 ### Added
@@ -42,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI workflow (ruff + pytest), pre-commit hooks, dependabot
 - Makefile with all standard targets
 
-[Unreleased]: https://github.com/omnipotence-eth/ml-experiment-scaffold/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/omnipotence-eth/ml-experiment-scaffold/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/omnipotence-eth/ml-experiment-scaffold/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/omnipotence-eth/ml-experiment-scaffold/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/omnipotence-eth/ml-experiment-scaffold/releases/tag/v0.1.0
