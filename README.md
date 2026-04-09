@@ -23,6 +23,10 @@ Built for RTX 5070 Ti (16GB VRAM, Blackwell sm_120) but works on any CUDA GPU.
 
 **Engineering, not notebooks.** Every experiment gets: config-driven training, `--dry-run` validation, VRAM profiling, W&B tracking, 3-seed statistical reporting, and automated evaluation.
 
+## Why
+
+Most ML experiment code is copy-pasted notebooks with no reproducibility. This scaffold enforces production discipline from the first training run — config-driven experiments, multi-seed evaluation, W&B tracking, and a Makefile workflow that goes from data validation to dry-run to full training. Designed for single-GPU homelab setups (RTX 5070 Ti, 16GB VRAM) running GRPO/ORPO fine-tuning with Unsloth and TRL. If you're tired of "it worked on my machine" ML experiments, start here.
+
 ## Architecture
 
 ```mermaid
@@ -131,7 +135,7 @@ compile: true                  # torch.compile (Tier 3)
 | File | Purpose |
 |------|---------|
 | [CHANGELOG.md](CHANGELOG.md) | Version history |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Branch strategy, ship workflow |
+| [CONTRIBUTING.md](CONTRIBUTINK.md) | Branch strategy, ship workflow |
 | [SECURITY.md](SECURITY.md) | Vulnerability reporting |
 | [paper.md](paper.md) | Paper hypothesis and results template |
 | [model_card.md](model_card.md) | Model documentation template |
