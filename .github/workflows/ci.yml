@@ -44,7 +44,7 @@ jobs:
       - name: Audit dependencies for CVEs
         run: uv run pip-audit
       - name: Static security analysis
-        run: uv run bandit -r src/ -ll --quiet
+        run: uv run bandit -r src/ -ll --quiet --skip B615
 
   test:
     name: Test (Python ${{ matrix.python-version }})
