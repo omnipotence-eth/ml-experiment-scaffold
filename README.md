@@ -4,7 +4,7 @@
 
 **Production ML experiment infrastructure for single-GPU homelab**
 
-[![CI](https://github.com/omnipotence-eth/ml-experiment-scaffold/actions/workflows/ci.yml/badge.svg)](https://github.com/omnipotence-eth/ml-experiment-scaffold/actions/workflows/ci.yml)
+[![CI](https://github.com/t-timms/ml-experiment-scaffold/actions/workflows/ci.yml/badge.svg)](https://github.com/t-timms/ml-experiment-scaffold/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.13+-blue.svg)](https://python.org)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)

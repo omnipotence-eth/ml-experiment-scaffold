@@ -8,7 +8,7 @@
 
 ## Reporting Vulnerabilities
 
-Report security vulnerabilities via [GitHub private advisory](https://github.com/omnipotence-eth/ml-experiment-scaffold/security/advisories/new).
+Report security vulnerabilities via [GitHub private advisory](https://github.com/t-timms/ml-experiment-scaffold/security/advisories/new).
 
 Do not open public issues for security vulnerabilities.
 

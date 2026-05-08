@@ -6,7 +6,7 @@
 - **Training data**: ~1,800 Bible Q&A pairs (SFT), preference pairs (ORPO)
 - **Hardware**: RTX 5070 Ti (16GB VRAM, Blackwell sm_120)
 - **W&B project**: bible-ai-assistant (34 runs tracked)
-- **Repo**: omnipotence-eth/bible-ai-assistant
+- **Repo**: t-timms/bible-ai-assistant
 
 ## Training Details
 

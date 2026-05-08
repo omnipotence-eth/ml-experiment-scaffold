@@ -53,7 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI workflow (ruff + pytest), pre-commit hooks, dependabot
 - Makefile with all standard targets
 
-[Unreleased]: https://github.com/omnipotence-eth/ml-experiment-scaffold/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/omnipotence-eth/ml-experiment-scaffold/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/omnipotence-eth/ml-experiment-scaffold/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/omnipotence-eth/ml-experiment-scaffold/releases/tag/v0.1.0
+[Unreleased]: https://github.com/t-timms/ml-experiment-scaffold/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/t-timms/ml-experiment-scaffold/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/t-timms/ml-experiment-scaffold/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/t-timms/ml-experiment-scaffold/releases/tag/v0.1.0
